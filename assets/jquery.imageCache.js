@@ -8,7 +8,8 @@
 * @version 1.0
 * @requires jQuery v1.3.2 or later
 *
-* Examples and documentation at: https://github.com/doomhz/jQuery-Image-Cache
+* Examples and documentation at: http://dumitruglavan.com/jquery-image-cache-plugin-cache-images-in-browsers-local-storage/
+* Find source on GitHub: https://github.com/doomhz/jQuery-Image-Cache
 *
 * Dual licensed under the MIT and GPL licenses:
 *   http://www.opensource.org/licenses/mit-license.php
