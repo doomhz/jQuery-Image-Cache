@@ -11,6 +11,13 @@ Set up get_image.php to return base64 encoded content from the server.
   <li><img src="assets/test-image-5.jpg" class="imageCache" /></li>
 </ul>
 
+Or you can ommit the SRC attribute and store it in data-src, because some browseres still request the server to see if the image is not changed:
+
+<ul>
+  <li><img src="" data-src="assets/test-image-4.jpg" class="imageCache" /></li>
+  <li><img src="" data-src="assets/test-image-5.jpg" class="imageCache" /></li>
+</ul>
+
 <script type="text/javascript">
 	$('img.imageCache').imageCache();
 </script>
