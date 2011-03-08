@@ -10,15 +10,20 @@
   </head>
   <body>
     
-	  <h1>jQuery Image Cache plugin</h1>
+	<h1>jQuery Image Cache plugin</h1>
 
-	  <p>Images are kept in browser's Local Storage!</p>
+	<p>Images are kept in browser's Local Storage! But, sometimes they do a request to the server to check if the image is not updated when you keep the SRC attribute.</p>
 
 	<ul>
 	  <li><img src="assets/test-image-1.jpg" class="imageCache" /></li>
 	  <li><img src="assets/test-image-2.jpg" class="imageCache" /></li>
-	  <li><img src="assets/test-image-4.jpg" class="imageCache" /></li>
-	  <li><img src="assets/test-image-5.jpg" class="imageCache" /></li>
+	</ul>
+
+	<p>Images are kept in browser's Local Storage! No requests to the server are done because the image URL is not stored in the SRC attribute anymore but in data-src.</p>
+
+	<ul>
+	  <li><img src="" data-src="assets/test-image-4.jpg" class="imageCache" /></li>
+	  <li><img src="" data-src="assets/test-image-5.jpg" class="imageCache" /></li>
 	</ul>
 
 	<script type="text/javascript">

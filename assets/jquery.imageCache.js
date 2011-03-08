@@ -29,7 +29,7 @@
 
 		$(document).ready(function () {
 			$(self).each(function (i, img) {
-				var src = $(img).attr('src');
+				var src = $(img).attr('src') || $(img).attr('data-src');
 				if (localStorage) {
 					var localSrc = localStorage[src];
 					if (localSrc) {
