@@ -32,12 +32,12 @@
 				var src = $(img).attr('src') || $(img).attr('data-src');
 				if (localStorage) {
 					var localSrc = localStorage[src];
-					if (localSrc != null && localSrc != 'false') {
+					if (localSrc && localSrc != 'pending') {
 						$(img).attr('src', localSrc);
 					} else {
 						$(img).attr('src', src);
-						if (localStorage[src] === null) {
-							localStorage[src] = 'false';
+						if (localStorage[src] !== 'pending') {
+							localStorage[src] = 'pending';
 							$.get(self.config.base64ImageEncoderPath + src, function (data) {
 								localStorage[src] = data;
 							});
