@@ -32,13 +32,16 @@
 				var src = $(img).attr('src') || $(img).attr('data-src');
 				if (localStorage) {
 					var localSrc = localStorage[src];
-					if (localSrc) {
+					if (localSrc != null && localSrc != 'false') {
 						$(img).attr('src', localSrc);
 					} else {
-						$.get(self.config.base64ImageEncoderPath + src, function (data) {
-							localStorage[src] = data;
-							$(img).attr('src', data);
-						});
+						$(img).attr('src', src);
+						if (localStorage[src] === null) {
+							localStorage[src] = 'false';
+							$.get(self.config.base64ImageEncoderPath + src, function (data) {
+								localStorage[src] = data;
+							});
+						}
 					}
 				}
 			});
