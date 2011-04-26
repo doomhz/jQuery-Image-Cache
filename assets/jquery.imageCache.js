@@ -5,7 +5,7 @@
 *
 * @author Dumitru Glavan
 * @link http://dumitruglavan.com
-* @version 1.1
+* @version 1.2
 * @requires jQuery v1.3.2 or later
 *
 * Examples and documentation at: http://dumitruglavan.com/jquery-image-cache-plugin-cache-images-in-browsers-local-storage/
@@ -29,17 +29,24 @@
 
 		$(document).ready(function () {
 			$(self).each(function (i, img) {
-				var src = $(img).attr('src') || $(img).attr('data-src');
+				var $img = $(img);
+				var src = $img.attr('src') || $img.attr('data-src');
 				if (localStorage) {
 					var localSrc = localStorage[src];
-					if (localSrc && localSrc != 'pending') {
-						$(img).attr('src', localSrc);
+					if (localSrc && /^data:image/.test(localSrc)) {
+						$img.attr('src', localSrc);
 					} else {
-						$(img).attr('src', src);
+						$img.attr('src', src);
 						if (localStorage[src] !== 'pending') {
 							localStorage[src] = 'pending';
-							$.get(self.config.base64ImageEncoderPath + src, function (data) {
-								localStorage[src] = data;
+							$.ajax({
+								url: self.config.base64ImageEncoderPath + src,
+								success: function (data) {
+									localStorage[src] = data;
+								},
+								error: function () {
+									localStorage[src] = 'error';
+								}
 							});
 						}
 					}
