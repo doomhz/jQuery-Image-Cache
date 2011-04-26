@@ -5,7 +5,7 @@
 *
 * @author Dumitru Glavan
 * @link http://dumitruglavan.com
-* @version 1.2
+* @version 1.3
 * @requires jQuery v1.3.2 or later
 *
 * Examples and documentation at: http://dumitruglavan.com/jquery-image-cache-plugin-cache-images-in-browsers-local-storage/
@@ -41,11 +41,11 @@
 				ctx.drawImage(img, 0, 0);
 				
 				var imgType = img.src.match(/(jpg|jpeg|png)/);
-				if (imgType.length) {
+				if (imgType && imgType.length) {
 					imgType = imgType[0] == 'jpg' ? 'jpeg' : imgType[0];
 				} else {
-					throw 'Invalid image type for canvas encoder.';
-				}console.log(imgType,canvas.toDataURL('image/' + imgType));
+					throw 'Invalid image type for canvas encoder: ' + img.src;
+				}
 
 				return canvas.toDataURL('image/' + imgType);
 			} catch (e) {
@@ -67,7 +67,9 @@
 						if (localStorage[src] !== 'pending') {
 							localStorage[src] = 'pending';
 							if (self.config.canvasEncoder) {
-								localStorage[src] = getBase64Image(img);
+								$(img).load(function () {
+									localStorage[src] = getBase64Image(img);
+								});								
 							} else {
 								$.ajax({
 									url: self.config.base64ImageEncoderPath + src,
