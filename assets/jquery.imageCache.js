@@ -42,7 +42,7 @@
 				
 				var imgType = img.src.match(/\.(jpg|jpeg|png)$/i);
 				if (imgType && imgType.length) {
-					imgType = imgType[0].toLowerCase() == 'jpg' ? 'jpeg' : imgType[0].toLowerCase();
+					imgType = imgType[1].toLowerCase() == 'jpg' ? 'jpeg' : imgType[1].toLowerCase();
 				} else {
 					throw 'Invalid image type for canvas encoder: ' + img.src;
 				}
