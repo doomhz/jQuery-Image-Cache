@@ -40,9 +40,9 @@
 				var ctx = canvas.getContext('2d');
 				ctx.drawImage(img, 0, 0);
 				
-				var imgType = img.src.match(/(jpg|jpeg|png)/);
+				var imgType = img.src.match(/\.(jpg|jpeg|png)$/i);
 				if (imgType && imgType.length) {
-					imgType = imgType[0] == 'jpg' ? 'jpeg' : imgType[0];
+					imgType = imgType[1].toLowerCase() == 'jpg' ? 'jpeg' : imgType[1].toLowerCase();
 				} else {
 					throw 'Invalid image type for canvas encoder: ' + img.src;
 				}
